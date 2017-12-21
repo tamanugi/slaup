@@ -3,6 +3,7 @@ const prog = require('caporal');
 
 const SlackApi = require('./lib/slackapi')
 const Log = require('./lib/log')
+const ora = require('ora')
 
 // version
 prog
@@ -31,12 +32,30 @@ prog
       return
     } 
 
+    const spinner = ora('Uploading...')
+    spinner.start()
+
     let apiOptions = {
       filename: options.f,
       initial_comment: options.m,
     }
 
-    SlackApi.fileupload(args.filepath, token, channels, apiOptions)
+    SlackApi.fileupload(args.filepath, token, channels, apiOptions, (err, body) => { 
+      spinner.stop()
+
+      if(err){
+        Log.error(err)
+        return
+      }
+
+      let json = JSON.parse(body)
+      if(json.ok){
+        Log.success('✨ Uploaded') 
+      }else{
+        Log.error(json.error)
+      }
+    })
+
   });
 
 prog.parse(process.argv);
