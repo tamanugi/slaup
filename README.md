@@ -10,7 +10,7 @@ $ npm install -g slaup
 ```
 
 # File Upload to Slack
-Please generate slack token from [hear](http://)
+Please generate slack token from [hear](https://api.slack.com/custom-integrations/legacy-tokens)
 
 ```
 $ slaup -t <token> -c general,hoge /path/to/file.txt 
