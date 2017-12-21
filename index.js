@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const version = require('./package.json').version;
 const prog = require('caporal');
 
