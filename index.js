@@ -18,6 +18,7 @@ prog
   .option('-c <channels>', 'Comma-separated list of channel names')
   .option('-f <filename>', 'Filename of file')
   .option('-m <comment>', 'Initial comment to add to file')
+  .option('-k <filetype>', 'A file type identifier')
   .action((args, options, logger) => {
 
     let token = options.t?options.t:process.env.SLAUP_SLACK_TOKEN
@@ -39,6 +40,7 @@ prog
     let apiOptions = {
       filename: options.f,
       initial_comment: options.m,
+      filetype: options.k
     }
 
     // exceution time measure start
