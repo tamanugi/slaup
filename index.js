@@ -13,12 +13,11 @@ prog
   
 // action
 prog
-  // .command('create', 'Create a new application')
-  .argument('<filepath>', 'Path to upload-file')
-  .option('-t <token>', 'slack token')
-  .option('-c <channels>', 'channel name for upload file')
-  .option('-f <filename>', 'channel name for upload file')
-  .option('-m <comment>', 'channel name for upload file')
+  .argument('<filepath>', 'Path to upload file')
+  .option('-t <token>', 'Slack API Token')
+  .option('-c <channels>', 'Comma-separated list of channel names')
+  .option('-f <filename>', 'Filename of file')
+  .option('-m <comment>', 'Initial comment to add to file')
   .action((args, options, logger) => {
 
     let token = options.t?options.t:process.env.SLAUP_SLACK_TOKEN
