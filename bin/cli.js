@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-const version = require('./package.json').version;
+const version = require('../package.json').version;
 const prog = require('caporal');
 
-const SlackApi = require('./lib/slackapi')
-const Log = require('./lib/log')
+const SlackApi = require('../lib/slackapi')
+const Log = require('../lib/log')
 const ora = require('ora')
 
 // version
