@@ -40,8 +40,12 @@ prog
       initial_comment: options.m,
     }
 
+    // exceution time measure start
+    let start = new Date();
     SlackApi.fileupload(args.filepath, token, channels, apiOptions, (err, body) => { 
       spinner.stop()
+      // exceution time measure end
+      let end = new Date() - start
 
       if(err){
         Log.error(err)
@@ -50,7 +54,7 @@ prog
 
       let json = JSON.parse(body)
       if(json.ok){
-        Log.success('✨ Uploaded') 
+        Log.success(`✨ Uploaded in ${end}ms`) 
       }else{
         Log.error(json.error)
       }
