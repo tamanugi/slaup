@@ -2,6 +2,7 @@ const version = require('./package.json').version;
 const prog = require('caporal');
 
 const SlackApi = require('./lib/slackapi')
+const Log = require('./lib/log')
 
 // version
 prog
@@ -16,17 +17,26 @@ prog
   .option('-f <filename>', 'channel name for upload file')
   .option('-m <comment>', 'channel name for upload file')
   .action((args, options, logger) => {
-    console.log({
-      args: args,
-      options: options
-    });
+
+    let token = options.t?options.t:process.env.SLAUP_SLACK_TOKEN
+    let channels = options.c?options.c:process.env.SLAUP_CHANNELS
+
+    // validation
+    if(!token) {
+      Log.error('Token empty. Please input -t <token> or set enviroment $SLAUP_SLACK_TOKEN')
+      return
+    }
+    if(!channels){
+      Log.error('Channels empty. Please input -c <channels> or set enviroment $SLAUP_CHANNELS')
+      return
+    } 
 
     let apiOptions = {
       filename: options.f,
       initial_comment: options.m,
     }
 
-    SlackApi.fileupload(args.filepath, options.t, options.c, options)
+    SlackApi.fileupload(args.filepath, token, channels, apiOptions)
   });
 
 prog.parse(process.argv);
