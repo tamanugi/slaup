@@ -26,11 +26,11 @@ prog
 
     // validation
     if(!token) {
-      Log.error('Token empty. Please input -t <token> or set enviroment $SLAUP_SLACK_TOKEN')
+      Log.error('Token empty. Please use -t <token> option or set enviroment variable $SLAUP_SLACK_TOKEN')
       return
     }
     if(!channels){
-      Log.error('Channels empty. Please input -c <channels> or set enviroment $SLAUP_CHANNELS')
+      Log.error('Channels empty. Please use -c <channels> or set enviroment $SLAUP_CHANNELS')
       return
     } 
 
